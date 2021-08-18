@@ -1,51 +1,42 @@
-startingAmount = 4.99;
-quarterCount = 0;
-dimeCount = 0;
-nickelCount = 0;
-pennyCount = 0;
+let startingAmount = 69.420
+let quarters = 0;
+let dimes = 0;
+let nickels = 0;
+let pennies = 0;
 
-function getQuarters(amount) {
-	if ((amount / 0.25) < 1) {
-		return quarterCount;
-	} else {
-		quarterCount++;
-		startingAmount -= 0.25
-		return getQuarters(startingAmount);
+console.log(startingAmount + " is comprised of:");
+GetChange(startingAmount);
+
+function GetChange(startingAmount) {
+	if  (startingAmount > 0) {
+		// Quarters
+		if (startingAmount / 0.25 >= 1) {
+			quarters++;
+			startingAmount -= 0.25;
+			GetChange(startingAmount);
+		}
+		// Dimes
+		else if (startingAmount / 0.1 >= 1) {
+			dimes++;
+			startingAmount -= 0.1;
+			GetChange(startingAmount);
+		}
+		// Nickels
+		else if (startingAmount / 0.05 >= 1) {
+			nickels++;
+			startingAmount -= 0.05;
+			GetChange(startingAmount);
+		}
+		// Pennies
+		else if (startingAmount / 0.01 >= 1) {
+			pennies++;
+			startingAmount -= 0.01;
+			GetChange(startingAmount);
+		}
 	}
 }
 
-function getDimes(amount) {
-	if ((amount / 0.1) < 1) {
-		return dimeCount;
-	} else {
-		dimeCount++;
-		startingAmount -= 0.1;
-		return getDimes(startingAmount);
-	}
-}
-
-function getNickels(amount) {
-	if ((amount / 0.05) < 1) {
-		return nickelCount;
-	} else {
-		nickelCount++;
-		startingAmount -= 0.05;
-		return getNickels(startingAmount);
-	}
-}
-
-function getPennies(amount) {
-	if ((amount / 0.01) < 1) {
-		return pennyCount;
-	} else {
-		pennyCount++;
-		startingAmount -= 0.01;
-		return getPennies(startingAmount)
-	}
-}
-
-console.log("$" + startingAmount + " consists of " +
-	getQuarters(startingAmount) + " quarters, " +
-	getDimes(startingAmount) + " dimes, " +
-	getNickels(startingAmount) + " nickels, " +
-	getPennies(startingAmount) + " pennies");
+console.log(quarters + " quarters");
+console.log(dimes + " dimes");
+console.log(nickels + " nickels");
+console.log(pennies + " pennies");
